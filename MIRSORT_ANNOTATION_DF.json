@@ -1,0 +1,61 @@
+{
+    "advar2fasta.py":{
+        "fasta_path": "/media/ftp_share/hbdx/raw_preprocessed/NGS/0_merged_matrices/miRSort_combined/230118_miRSort_combined_v23.01.00__paper_version/result/expression_mat/features_detected_sequences__publication.fa"
+    },
+    "merge_sRNAclass_annotations.py":{
+        "unitas_annot_path": "/media/ftp_share/hbdx/annotation/feature_annotation/ANNOTATION/data_mirblood/unitas_annotation/unitas.full_annotation_matrix_justannoseqs.txt",
+        "sports_annot_path": "/media/ftp_share/hbdx/annotation/feature_annotation/ANNOTATION/data_mirblood/sports_annotation/1_features_detected_sequences__publication/features_detected_sequences__publication_result/features_detected_sequences__publication_output_justannoseqs.txt",
+        "sRNA_class_annot_path": "/media/ftp_share/hbdx/annotation/feature_annotation/ANNOTATION/data_mirblood/sRNA_class_annotation.csv"
+    },
+    "rRNA_position_classification.py":{
+        "seq_path": "/media/ftp_share/hbdx/annotation/feature_annotation/ANNOTATION/data_mirblood/sports_annotation/1_features_detected_sequences__publication/features_detected_sequences__publication_fa/",
+        "ref_path": "/media/ftp_share/hbdx/annotation/feature_annotation/ANNOTATION/mapping_reference/Homo_sapiens/rRNAdb/",
+        "rRNA_name_annot_path": "/media/ftp_share/hbdx/annotation/feature_annotation/ANNOTATION/data_mirblood/sports_annotation/rRNA_start_pos_binned.csv",
+        "YRNA_name_annot_path": "/media/ftp_share/hbdx/annotation/feature_annotation/ANNOTATION/data_mirblood/sports_annotation/YRNA_start_pos_binned.csv"
+    },
+    "generate_sRNA_sub_class_annotation_df.py":{
+        "snoDB_info_path": "/media/ftp_share/hbdx/annotation/feature_annotation/ANNOTATION/data/snoDB.tsv",
+        "sRNA_sub_class_annot_path": "/media/ftp_share/hbdx/annotation/feature_annotation/ANNOTATION/data_mirblood/sRNA_class_subtypes_annot__miRSort_combined.csv"
+    },
+    "create_seq_annotation_df.py":{
+        "ANNOTATION_DF": "/media/ftp_share/hbdx/annotation/feature_annotation/ANNOTATION/data_mirblood/miRSort_combined_ANNO_DF_230120.csv"
+      },
+    "ad_reduce_features.py":{
+        "ad_path": "/data/hbdx_ldap_local/analysis/data/miRSort_combined/miRSort_combined__ngs-23.1.0.h5ad",
+        "version": "23.1.1",
+        "ad_reduced_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/miRSort_combined__ngs-23.1.1.h5ad"
+    },
+    "ad_aggregate.py":{
+        "ad_seq_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/",
+        "ad_seq_filename": "miRSort_combined__ngs-23.1.1.h5ad",
+        "ad_aggregated_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/",
+        "ad_aggregated_filename": "miRSort_combined__ngs_aggregated-23.1.1.h5ad"
+    },
+    "ad_reduce_features_further.py":{
+        "ad_aggregated_bloodcomponents_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/miRSort_combined__ngs_aggregated-23.1.1__celltypes.h5ad",
+        "ad_aggregated_wholeblood_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/miRSort_combined__ngs_aggregated-23.1.1__whole_blood.h5ad"
+    },
+    "ad2csv.py":{
+        "tsne_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__tsne_embedding_data.csv",
+        "obs_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__obs_data.csv",
+        "GEO_smp_record_info": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__GEO_smp_record_info.csv",
+        "sRNAtype_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__sRNAtype_data.csv",
+        "sRNA_subtype_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__sRNA_subtype_data.csv",
+        "expr_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__log2RPM+1_expression_data.csv",
+        "expr_extra_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__log2RPM+1_WHOLEBLOOD_expression_data.csv",
+        "box_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__boxplot_data.csv",
+        "sRNA_aggreg_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__sRNA_aggreg_prop_data.csv",
+        "expr_mean_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__log2RPM+1_mean_data.csv",
+        "marker_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__celltype_marker_data.json",
+        "cell_prop_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__cell_prop_data.csv",
+        "RPM_mean_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__RPM_mean_data.csv",
+        "scaled_prop_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__proportional_scaled_RPM_mean_data.csv",
+        "corr_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__bloodcount_correlation_data.csv",
+        "tsne_plot_all_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__tSNE_plot_all.pdf",
+        "tsne_plot_filtered_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__tSNE_plot_filtered.pdf",
+        "counts_plot_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__counts_plot_filtered.pdf",
+        "suppl_table_1_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__suppl_table_1_data.csv",
+        "suppl_table_2_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__suppl_table_2_data.csv",
+        "suppl_table_3_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/dashboard_data/qc_filtered/miRSort_combined__ngs_aggregated-23.1.1__suppl_table_3_data.csv"
+    }
+}
