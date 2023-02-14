@@ -1,0 +1,58 @@
+
+
+
+
+#########################################################
+######################################################### core preprocessing
+#########################################################
+
+run_core_preprocessing: True
+
+sample_sheet_for_core_preprocessing: <PATH>/sample_sheet_for_core_preprocessing.txt
+
+########################## raw (fastq) data
+# if all samples have the same useless prefix, it can be replaced, otherwise use empty string "" to keep the whole name
+input_file__prefix: ""
+input_file__file_extension: ".fastq.gz"
+
+
+########################## results folders
+dir_results: <PATH>/preprocessed/
+
+dir_info: 0_info/
+
+dir_trimmed_and_collapsed: trimmed_and_collapsed/
+
+dir_read_stats: stats/
+dir_read_stats__read_length_distribution__UMI: read_length_distribution__UMI/
+dir_read_stats__flowcell_stats: fastq_basic_infos__flowcell_count/
+dir_read_stats__sequencer_stats: fastq_basic_infos__sequencer_count
+dir_read_stats__total_read_count_stats: fastq_basic_infos__total_read_count_before_preprocessing/
+dir_read_stats__index_stats: fastq_basic_infos__index_stats/
+
+dir_expression_mat: expression_mat/
+
+########################## trim and collapse
+
+trim_and_collapse:
+    adapter_3p: "AACTGTAGGCACCATCAAT"
+    insert_length_min: 18
+    umi_mode: True
+    umi_length: 12
+    read_2_adapter: "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA"
+    read_2_adapter_min_overlap: 1
+# just as info, 5p-adapter is: GTTCAGAGTTCTACAGTCCGACGATC
+
+########################## read statistics
+
+read_stats__read_length_distribution__UMI:
+    count_type: "UMI"
+    is_total_count: True
+
+
+ ########################## sequence expression / count matrix
+
+expression_mat:
+    feature_present_in_min_X_samples: 1
+    feature_with_at_least_X_count: 1
+
