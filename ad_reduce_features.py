@@ -10,7 +10,7 @@ config = json.load(
 )
 
 version =  config["ad_reduce_features.py"]["version"]
-input_path_1 = config["ad_reduce_features.py"]["ad_path"]
+input_path_1 = config["assemble_anndata.py"]["ad_path"]
 input_path_2 = config["create_seq_annotation_df.py"]["ANNOTATION_DF"]
 outputpath = config["ad_reduce_features.py"]["ad_reduced_path"]
 
@@ -21,8 +21,8 @@ def UseRawExpression(ad):
     return raw_ad
 
 
-# define if var needs to be updated
-update_var = False
+# define if var anno shall be added
+add_var = True
 
 
 # load anndata
@@ -40,7 +40,7 @@ seq_overlap = list(set.intersection(set(annot_df.index),set(MS_ad.var_names)))
 print('seq_overlap check: ' + str(len(seq_overlap) == len(annot_df)))
 annot_df = annot_df.loc[seq_overlap,:]
 MS_ad = MS_ad[:,seq_overlap]
-if update_var:
+if add_var:
     MS_ad.var = annot_df
 MS_ad
 
@@ -54,7 +54,7 @@ print('number of sequences after reduction: ' + str(MS_ad.shape[1]))
 # adjust uns
 MS_ad.uns["last_modified"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 MS_ad.uns["release_notes"] = "miRSort_combined__ngs-23.1.0.h5ad reduced to features with miRSort-specific subclass_name annotation"
-if update_var:
+if add_var:
     MS_ad.uns['input_paths']['var_annotation'] = input_path_2
 MS_ad.uns["version"] = version
 

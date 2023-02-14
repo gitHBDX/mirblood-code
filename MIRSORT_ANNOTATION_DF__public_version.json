@@ -1,6 +1,10 @@
 {
-    "advar2fasta.py":{
-        "fasta_path": "result/expression_mat/features_detected_sequences__publication.fa"
+    "assemble_anndata.py":{
+        "expression_file": "<PATH>/preprocessed/expression_mat/raw_count__sequences.txt",
+        "obs_file": "<PATH>/preprocessed/0_info/sample_info.txt",
+        "ad_path": "miRSort_combined__ngs-23.1.0.h5ad",
+        "version": "23.1.0",
+        "fasta_path": "<PATH>/preprocessed/expression_mat/features_all_sequences.fa"
     },
     "merge_sRNAclass_annotations.py":{
         "unitas_annot_path": "unitas_annotation/UNITAS_dd-mm-yyyy_features_detected_sequences__publication.fa_#1/unitas.full_annotation_matrix_justannoseqs.txt",
@@ -20,9 +24,8 @@
     },
     "create_seq_annotation_df.py":{
         "ANNOTATION_DF": "miRSort_combined_ANNO_DF_230120.csv"
-      },
+    },  
     "ad_reduce_features.py":{
-        "ad_path": "miRSort_combined__ngs-23.1.0.h5ad",
         "version": "23.1.1",
         "ad_reduced_path": "miRSort_combined__ngs-23.1.1.h5ad"
     },

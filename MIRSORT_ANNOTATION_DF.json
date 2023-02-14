@@ -1,6 +1,10 @@
 {
-    "advar2fasta.py":{
-        "fasta_path": "/media/ftp_share/hbdx/raw_preprocessed/NGS/0_merged_matrices/miRSort_combined/230118_miRSort_combined_v23.01.00__paper_version/result/expression_mat/features_detected_sequences__publication.fa"
+    "assemble_anndata.py":{
+        "expression_file": "/media/ftp_share/hbdx/raw_preprocessed/NGS/0_merged_matrices/miRSort_combined/230118_miRSort_combined_v23.01.00__paper_version/result/expression_mat/raw_count__sequences.txt",
+        "obs_file": "/media/ftp_share/hbdx/raw_preprocessed/NGS/0_merged_matrices/miRSort_combined/230118_miRSort_combined_v23.01.00__paper_version/result/0_info/sample_info.txt",
+        "ad_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/miRSort_combined__ngs-23.1.0.h5ad",
+        "version": "23.1.0",
+        "fasta_path": "/media/ftp_share/hbdx/raw_preprocessed/NGS/0_merged_matrices/miRSort_combined/230118_miRSort_combined_v23.01.00__paper_version/result/expression_mat/features_detected_sequences__publication_TEST.fa"
     },
     "merge_sRNAclass_annotations.py":{
         "unitas_annot_path": "/media/ftp_share/hbdx/annotation/feature_annotation/ANNOTATION/data_mirblood/unitas_annotation/unitas.full_annotation_matrix_justannoseqs.txt",
@@ -19,9 +23,8 @@
     },
     "create_seq_annotation_df.py":{
         "ANNOTATION_DF": "/media/ftp_share/hbdx/annotation/feature_annotation/ANNOTATION/data_mirblood/miRSort_combined_ANNO_DF_230120.csv"
-      },
+    },
     "ad_reduce_features.py":{
-        "ad_path": "/data/hbdx_ldap_local/analysis/data/miRSort_combined/miRSort_combined__ngs-23.1.0.h5ad",
         "version": "23.1.1",
         "ad_reduced_path": "/media/ftp_share/hbdx/analysis/data/miRSort_combined/miRSort_combined__ngs-23.1.1.h5ad"
     },
