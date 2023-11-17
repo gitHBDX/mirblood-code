@@ -96,3 +96,8 @@ python ad_reduce_features_further.py
 ```
 python ad2csv.py
 ```
+
+## Compare to previous benchmark dataset (Juzenas et al. 2017 NAR)
+```
+python compare_2_Juzenas.py
+```

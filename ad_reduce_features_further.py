@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 import anndata as ad
+from utils import UseRawExpression, FeatureThreshold
 
 
 # load config
@@ -13,18 +14,6 @@ version = config["ad_reduce_features.py"]["version"]
 outputpath = config["ad_reduce_features_further.py"]["ad_aggregated_bloodcomponents_path"]
 outputpath_extra = config["ad_reduce_features_further.py"]["ad_aggregated_wholeblood_path"]
 
-
-def FeatureThreshold(ad, threshold):
-    returned_ad = ad.copy()
-    returned_ad.X[returned_ad.X < threshold] = 0
-    features = returned_ad.var[returned_ad.X.sum(0) > 0].index.tolist()
-    returned_ad = returned_ad[:,features]
-    return returned_ad
-
-def UseRawExpression(ad):
-    raw_ad = ad.copy()
-    raw_ad.X = raw_ad.raw[ad.obs_names, ad.var_names].X
-    return raw_ad
 
 
 # load anndata

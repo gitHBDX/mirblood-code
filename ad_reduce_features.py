@@ -3,22 +3,18 @@ import json
 from datetime import datetime
 import pandas as pd
 import anndata as ad
+from utils import UseRawExpression
 
 # load config
 config = json.load(
     open("MIRSORT_ANNOTATION_DF.json")
 )
 
+version_init =  config["assemble_anndata.py"]["version"]
 version =  config["ad_reduce_features.py"]["version"]
 input_path_1 = config["assemble_anndata.py"]["ad_path"]
 input_path_2 = config["create_seq_annotation_df.py"]["ANNOTATION_DF"]
 outputpath = config["ad_reduce_features.py"]["ad_reduced_path"]
-
-
-def UseRawExpression(ad):
-    raw_ad = ad.copy()
-    raw_ad.X = raw_ad.raw[ad.obs_names, ad.var_names].X
-    return raw_ad
 
 
 # define if var anno shall be added
@@ -53,7 +49,7 @@ print('number of sequences after reduction: ' + str(MS_ad.shape[1]))
 
 # adjust uns
 MS_ad.uns["last_modified"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-MS_ad.uns["release_notes"] = "miRSort_combined__ngs-23.1.0.h5ad reduced to features with miRSort-specific subclass_name annotation"
+MS_ad.uns["release_notes"] = f"miRSort_combined__ngs-{version_init}.h5ad reduced to features with miRSort-specific subclass_name annotation"
 if add_var:
     MS_ad.uns['input_paths']['var_annotation'] = input_path_2
 MS_ad.uns["version"] = version
