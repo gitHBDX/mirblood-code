@@ -419,12 +419,20 @@ sRNA_subtypes_df.to_csv(sRNA_subtype_path)
 ################################################################################################################################################################
 # EXPRESSION DATA (for download)
 expr_df = MS_ad.to_df()
+expr_df = expr_df.T
+# add sRNA type as second index
+expr_df['sRNA_type'] = MS_ad.var
+expr_df = expr_df.set_index('sRNA_type', append=True)
 expr_df.to_csv(expr_path)
 
 #%%
 ################################################################################################################################################################
 # EXTRA EXPRESSION DATA (for download)
 expr_extra_df = MS_extra_ad.to_df()
+expr_extra_df = expr_extra_df.T
+# add sRNA type as second index
+expr_extra_df['sRNA_type'] = MS_extra_ad.var
+expr_extra_df = expr_extra_df.set_index('sRNA_type', append=True)
 expr_extra_df.to_csv(expr_extra_path)
 
 
