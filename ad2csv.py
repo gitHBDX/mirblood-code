@@ -2,16 +2,10 @@
 import pandas as pd
 import numpy as np
 import anndata as ad
-from anndata import AnnData
 from sklearn.manifold import TSNE
 from scipy.stats import pearsonr
 import scanpy as sc
 import json
-import omegaconf
-from scipy.stats import mode
-from joblib import Parallel, delayed, parallel_backend
-import tqdm
-from tqdm import tqdm
 from utils import AnnDataAggregator
 
 #%%
@@ -54,6 +48,7 @@ corr_path = config["ad2csv.py"]["corr_path"]
 tsne_plot_all_path = config["ad2csv.py"]["tsne_plot_all_path"]
 tsne_plot_filtered_path = config["ad2csv.py"]["tsne_plot_filtered_path"]
 counts_plot_path = config["ad2csv.py"]["counts_plot_path"]
+FA_plot_path = config["ad2csv.py"]["FA_plot_path"]
 
 
 #%%
@@ -346,6 +341,20 @@ if make_plots:
 #%%
 # write tSNE to file
 tsne_df.to_csv(tsne_path)
+
+#%%
+if make_plots:
+    plot_df = MS_ad.obs.copy()
+    counts_vs_miRNA = px.scatter(plot_df, x='cellsorting__cell_counts', y='cellsorting__miRNA_concentration', color='mirsort_group', color_discrete_map=celltype_lut, hover_name=plot_df.index, category_orders={'mirsort_group': ['Plasma', 'Erythrocytes', 'Thrombocytes', 'Monocytes', 'Neutrophils', 'Eosinophils', 'Basophils', 'NK cells', 'CD4+ T cells', 'CD8+ T cells', 'B cells']})
+    counts_vs_miRNA.show()
+    counts_vs_sRNA = px.scatter(plot_df, x='cellsorting__cell_counts', y='cellsorting__small_concentration', color='mirsort_group', color_discrete_map=celltype_lut, hover_name=plot_df.index, category_orders={'mirsort_group': ['Plasma', 'Erythrocytes', 'Thrombocytes', 'Monocytes', 'Neutrophils', 'Eosinophils', 'Basophils', 'NK cells', 'CD4+ T cells', 'CD8+ T cells', 'B cells']})
+    counts_vs_sRNA.show()
+
+    # calculate ratio miRNA region / small RNA region
+    plot_df['miRNA_region/sRNA_region'] = plot_df.cellsorting__miRNA_concentration/plot_df.cellsorting__small_concentration
+    ratio_miRNA_sRNA = px.box(plot_df, x='mirsort_group', y='miRNA_region/sRNA_region', color='mirsort_group', color_discrete_map=celltype_lut, hover_name=plot_df.index, category_orders={'mirsort_group': ['Plasma', 'Erythrocytes', 'Thrombocytes', 'Monocytes', 'Neutrophils', 'Eosinophils', 'Basophils', 'NK cells', 'CD4+ T cells', 'CD8+ T cells', 'B cells']})
+    ratio_miRNA_sRNA.update_layout(xaxis_title="", showlegend=False, font_family='Arial').show()
+    ratio_miRNA_sRNA.update_xaxes(tickangle=0).write_image(FA_plot_path, width=1200, height=600)
 
 #%%
 ################################################################################################################################################################
@@ -719,7 +728,7 @@ MS_ad.obs.cellsorting__cell_counts[MS_ad.obs.cellsorting__cell_counts == 0] = np
 
 
 # calculate total small RNA eluted [pg]
-MS_ad.obs['sRNA_mass_eluted'] = np.multiply(MS_ad.obs.cellsorting__miRNA_concentration, MS_ad.obs.cellsorting__elution_volume)
+MS_ad.obs['sRNA_mass_eluted'] = np.multiply(MS_ad.obs.cellsorting__small_concentration, MS_ad.obs.cellsorting__elution_volume)
 
 # calculate small RNA mass per sorted cell [pg/cell]
 MS_ad.obs['sRNA_mass_per_cells'] = np.divide(MS_ad.obs.sRNA_mass_eluted, MS_ad.obs.cellsorting__cell_counts)

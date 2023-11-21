@@ -58,6 +58,7 @@
         "tsne_plot_all_path": "miRSort_combined__ngs_aggregated-23.11.1__tSNE_plot_all.pdf",
         "tsne_plot_filtered_path": "miRSort_combined__ngs_aggregated-23.11.1__tSNE_plot_filtered.pdf",
         "counts_plot_path": "miRSort_combined__ngs_aggregated-23.11.1__counts_plot_filtered.pdf",
+        "FA_plot_path": "miRSort_combined__ngs_aggregated-23.11.1__FA_ratio_plot_filtered.pdf",
         "suppl_table_1_path": "miRSort_combined__ngs_aggregated-23.11.1__suppl_table_1_data.csv",
         "suppl_table_2_path": "miRSort_combined__ngs_aggregated-23.11.1__suppl_table_2_data.csv",
         "suppl_table_3_path": "miRSort_combined__ngs_aggregated-23.11.1__suppl_table_3_data.csv"
