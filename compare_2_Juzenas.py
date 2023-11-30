@@ -138,13 +138,13 @@ sc.pl.rank_genes_groups_dotplot(Kiel_sc_aggreg_ad, n_genes=5, standard_scale='va
 
 #%%
 fig_3 = px.box(MS_sc_aggreg_ad.obs, x='mirsort_group', y='total_count_after_preprocessing', color='mirsort_group', color_discrete_map=celltype_lut, category_orders={'mirsort_group': ['Plasma', 'Erythrocytes', 'Thrombocytes', 'Monocytes', 'Neutrophils', 'Eosinophils', 'Basophils', 'NK cells', 'CD4+ T cells', 'CD8+ T cells', 'B cells']})
-fig_3.update_layout(xaxis_title="", yaxis_title="total read counts after preprocessing", title='miR-Blood', showlegend=False, font_family='Arial')
+fig_3.update_layout(xaxis_title="", yaxis_title="total read counts after preprocessing", title='miR-Blood', showlegend=False, font_family='Arial', font_size=16)
 fig_3.update_xaxes(tickangle=0)
 fig_3.show()
 fig_3.write_image(output_path + 'boxplot__totalcounts__miRBlood.pdf', width=1200, height=600)
 
 fig_3b = px.box(Kiel_sc_aggreg_ad.obs, x='group', y='total_count', color='group', color_discrete_map=celltype_lut_b, category_orders={'group': ['serum', 'CD235a', 'CD14', 'CD15', 'CD56', 'CD4', 'CD8', 'CD19']})
-fig_3b.update_layout(xaxis_title="", yaxis_title="total read counts after preprocessing", title='IKMB catalogue (previous benchmark)', showlegend=False, font_family='Arial')
+fig_3b.update_layout(xaxis_title="", yaxis_title="total read counts after preprocessing", title='IKMB catalogue (previous benchmark)', showlegend=False, font_family='Arial', font_size=16)
 fig_3b.update_xaxes(tickangle=0)
 fig_3b.show()
 fig_3b.write_image(output_path + 'boxplot__totalcounts__Kiel.pdf', width=1200, height=600)
@@ -209,6 +209,7 @@ for celltype in group_name_dict.keys():
   content_data = from_contents(tmp_dict)
 
   upset = UpSet(content_data, subset_size='auto', show_counts='%d')
+  plt.rcParams['font.size'] = 15
   upset.plot()
   plt.savefig(output_path + f'upset_plot__nonzerofraction__miRBlood_vs_Kiel__{celltype}.png', dpi=300)
   plt.clf()
@@ -252,7 +253,10 @@ for celltype in group_name_dict.keys():
 
     pearson_coef, pearson_pval = pearsonr(x_data, y_data)
 
-    sns.scatterplot(x=x_data, y=y_data, s=10).set(title= f"{celltype} - Pearson coefficient = {str(round(pearson_coef, 2))}", xlabel=f"miR-Blood {group_name_dict[celltype]['miR-Blood']} expression [log2(RPM+1)]", ylabel=f"IKMB catalogue {group_name_dict[celltype]['Kiel']} expression [log2(RPM+1)]")
+    plt.rcParams['font.size'] = 15
+
+    sns.scatterplot(x=x_data, y=y_data, s=10).set(title= f"{celltype} - Pearson coefficient = {str(round(pearson_coef, 2))}", xlabel=f"miR-Blood [log2(RPM+1)]", ylabel=f"IKMB catalogue [log2(RPM+1)]")
+    #sns.scatterplot(x=x_data, y=y_data, s=10).set(title= f"{celltype} - Pearson coefficient = {str(round(pearson_coef, 2))}", xlabel=f"miR-Blood {group_name_dict[celltype]['miR-Blood']} expression [log2(RPM+1)]", ylabel=f"IKMB catalogue {group_name_dict[celltype]['Kiel']} expression [log2(RPM+1)]")
     # set y and x axis limits
     plt.xlim(0, 19)
     plt.ylim(0, 19)
