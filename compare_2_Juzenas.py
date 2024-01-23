@@ -52,7 +52,7 @@ color_list = ['rgb(169,169,169)','rgb(255,139,139)','rgb(239,231,222)','rgb(178,
 celltype_lut = dict(zip(cell_types, color_list))
 
 cell_types_b = [
-    "serum",
+    "Serum",
     "CD235a",
     "tbd_1",
     "CD14",
@@ -78,7 +78,7 @@ group_name_dict = {
   'CD8': {'Kiel': 'CD8', 'miR-Blood': 'CD8+ T cells'},
   'B cells': {'Kiel': 'CD19', 'miR-Blood': 'B cells'},
   'Erythrocytes': {'Kiel': 'CD235a', 'miR-Blood': 'Erythrocytes'},
-  'Plasma': {'Kiel': 'serum', 'miR-Blood': 'Plasma'},
+  'Plasma': {'Kiel': 'Serum', 'miR-Blood': 'Plasma'},
   #'EDTA_WholeBlood': {'Kiel': 'WB', 'miR-Blood': 'EDTA_WholeBlood'},
 }
 
@@ -123,6 +123,9 @@ MS_sc_aggreg_ad
 Kiel_ad = ad.read_h5ad(Kiel_ad_path)
 # remove WB and exosomes
 Kiel_ad = Kiel_ad[~Kiel_ad.obs.group.isin(['WB', 'exosomes']),:]
+# rename group 'serum' to 'Serum'
+Kiel_ad.obs.group.cat.add_categories(['Serum'], inplace=True)
+Kiel_ad.obs.loc[Kiel_ad.obs.group.isin(['serum']),'group'] = 'Serum'
 Kiel_ad.obs.group.cat.remove_unused_categories(inplace=True)
 # aggregate on subclass name
 Kiel_sc_aggreg_ad = AnnDataAggregator(Kiel_ad, aggregate_obs=False, by='subclass_name', work_on_raw=True)
@@ -143,7 +146,7 @@ fig_3.update_xaxes(tickangle=0)
 fig_3.show()
 fig_3.write_image(output_path + 'boxplot__totalcounts__miRBlood.pdf', width=1200, height=600)
 
-fig_3b = px.box(Kiel_sc_aggreg_ad.obs, x='group', y='total_count', color='group', color_discrete_map=celltype_lut_b, category_orders={'group': ['serum', 'CD235a', 'CD14', 'CD15', 'CD56', 'CD4', 'CD8', 'CD19']})
+fig_3b = px.box(Kiel_sc_aggreg_ad.obs, x='group', y='total_count', color='group', color_discrete_map=celltype_lut_b, category_orders={'group': ['Serum', 'CD235a', 'CD14', 'CD15', 'CD56', 'CD4', 'CD8', 'CD19']})
 fig_3b.update_layout(xaxis_title="", yaxis_title="total read counts after preprocessing", title='IKMB catalogue (previous benchmark)', showlegend=False, font_family='Arial', font_size=16)
 fig_3b.update_xaxes(tickangle=0)
 fig_3b.show()
@@ -211,6 +214,9 @@ for celltype in group_name_dict.keys():
   upset = UpSet(content_data, subset_size='auto', show_counts='%d')
   plt.rcParams['font.size'] = 15
   upset.plot()
+  # increase width of plot slightly to show labels fully
+  if celltype == 'Plasma':
+    plt.gcf().set_size_inches(plt.gcf().get_size_inches()[0]+0.2, plt.gcf().get_size_inches()[1])
   plt.savefig(output_path + f'upset_plot__nonzerofraction__miRBlood_vs_Kiel__{celltype}.png', dpi=300)
   plt.clf()
 
@@ -234,7 +240,7 @@ group_name_dict = {
   'CD8': {'Kiel': 'CD8', 'miR-Blood': 'CD8'},
   'B cells': {'Kiel': 'CD19', 'miR-Blood': 'B cells'},
   'Erythrocytes': {'Kiel': 'CD235a', 'miR-Blood': 'Erythrocytes'},
-  'Plasma': {'Kiel': 'serum', 'miR-Blood': 'Plasma'},
+  'Plasma': {'Kiel': 'Serum', 'miR-Blood': 'Plasma'},
   #'EDTA_WholeBlood': {'Kiel': 'WB', 'miR-Blood': 'EDTA_WholeBlood'},
 }
 
@@ -266,6 +272,8 @@ for celltype in group_name_dict.keys():
     plt.plot([0, 19], [0, 19], 'k--')
     # color miR-16-5p red
     plt.scatter(x_data[MS_sc_aggreg_ad.var_names[~nas].isin(['miR-16-5p'])], y_data[MS_sc_aggreg_ad.var_names[~nas].isin(['miR-16-5p'])], color='red')
+    # make sure that x-axis title is displayed fully (currently cut off)
+    plt.tight_layout()
     plt.savefig(output_path + 'scatterplot__sharedscs__miRBlood_vs_Kiel__' + celltype +'.png', facecolor='white', dpi=300)
     plt.clf()
 
